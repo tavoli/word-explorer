@@ -8,6 +8,6 @@ const root = ReactDOM.createRoot(container)
 
 root.render(
   <React.StrictMode>
-    <Autocomplete />
+    <Autocomplete url="http://localhost:3000?q=" />
   </React.StrictMode>
 )

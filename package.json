@@ -11,10 +11,11 @@
   "devDependencies": {
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "bun-types": "^1.0.18-1"
+    "bun-types": "^1.0.18-1",
   },
   "scripts": {
     "dev": "bunx --bun vite",
+    "api": "bun run src/api/index.ts",
     "build": "vite build",
     "serve": "vite preview"
   },

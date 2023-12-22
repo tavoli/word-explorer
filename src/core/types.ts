@@ -12,7 +12,12 @@ export interface AutoCompleteState {
   error: Error | null;
 }
 
+export interface AutoCompleteAction {
+  type: string;
+  payload: any;
+}
+
 export interface ControllerContext {
   state: AutoCompleteState;
-  query: (search: string) => void;
+  dispatch: (action: AutoCompleteAction) => void;
 }
