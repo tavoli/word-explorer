@@ -11,7 +11,8 @@ root.render(
     <Autocomplete
       url="http://localhost:3000?q="
       debounceTime={500}
-      autoFocus={true}
+      inputAutoFocus={true}
+      inputShortcutKey="/"
       initialResults={[
         {id: '1', text: 'foo'},
         {id: '2', text: 'bar'},

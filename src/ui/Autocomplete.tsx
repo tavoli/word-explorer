@@ -9,7 +9,10 @@ import Results from "./Results";
 export default function Autocomplete(props: AutoCompleteProps) {
   return (
     <Controller.Provider value={setupController(props)}>
-      <Input autoFocus={props.autoFocus} />
+      <Input
+        autoFocus={props.inputAutoFocus}
+        shortcutKey={props.inputShortcutKey}
+      />
       <Results />
     </Controller.Provider>
   );
