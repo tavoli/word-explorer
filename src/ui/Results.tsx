@@ -4,6 +4,7 @@ import {Results} from '../core/types';
 
 export default function Results() {
   const {state} = useContext(Controller)
+  
   return (
     <ul>
       {state.data.map((item) => (

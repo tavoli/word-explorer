@@ -1,25 +1,25 @@
 import {createContext, useEffect, useReducer} from "react";
 
 import initialState from "./state.json";
-import {fetchEvent} from "./fetch";
+import {useDebounceFetch} from "./fetch";
 import {reducer} from "./reducer";
 
 import {
   AutoCompleteProps, ControllerContext
 } from "./types";
-import useDebounceValue from "./debounce";
+
+function useInitialResults({ search, dispatch, options }) {
+  useEffect(() => {
+    if (options.initialResults && search.length === 0) {
+      dispatch({type: "QUERY_SUCCESS", payload: options.initialResults})
+    }
+  }, [search])
+}
 
 export const setupController = (options: AutoCompleteProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const debounceSearch = useDebounceValue(state.search, options.debounceTime ?? 0)
-
-  useEffect(() => {
-    if (state.search.length >= (options.minChars || 3)) {
-      fetchEvent(state.search, options)
-        .then((data) => dispatch({type: "QUERY_SUCCESS", payload: data}))
-        .catch((error) => dispatch({type: "QUERY_ERROR", payload: error}))
-    }
-  }, [debounceSearch]);
+  useDebounceFetch({search: state.search, dispatch, options})
+  useInitialResults({search: state.search, dispatch, options})
 
   return {state, dispatch};
 }

@@ -11,6 +11,12 @@ root.render(
     <Autocomplete
       url="http://localhost:3000?q="
       debounceTime={500}
+      autoFocus={true}
+      initialResults={[
+        {id: '1', text: 'foo'},
+        {id: '2', text: 'bar'},
+        {id: '3', text: 'baz'},
+      ]}
     />
   </React.StrictMode>
 )

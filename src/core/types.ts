@@ -24,6 +24,8 @@ export interface AutoCompleteProps {
   maxItems?: number;
   cache?: boolean;
   cacheDuration?: number;
+  autoFocus?: boolean;
+  initialResults?: Results;
 }
 
 export interface ControllerContext {
