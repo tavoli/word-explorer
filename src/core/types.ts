@@ -35,3 +35,12 @@ export interface ControllerContext {
   state: AutoCompleteState;
   dispatch: (action: AutoCompleteAction) => void;
 }
+
+export type SetState = React.Dispatch<React.SetStateAction<AutoCompleteState>>;
+
+export interface ReducerProps {
+  action: AutoCompleteAction;
+  state: AutoCompleteState;
+  setState: SetState;
+  options: AutoCompleteProps;
+}

@@ -1,35 +1,34 @@
-import {createContext, useEffect, useReducer} from "react";
+import {createContext, useEffect, useState} from "react";
 
 import initialState from "./state.json";
-import {useFetchEvent} from "./fetch";
 import {reducer} from "./reducer";
 
 import {
   AutoCompleteProps, ControllerContext
 } from "./types";
 
-function useInitialResults({ search, dispatch, options }) {
+function useThunkReducer(reducer: Function, {initialState, options}) {
+  const [action, dispatch] = useState({type: '', payload: ''})
+  const [state, setState] = useState(initialState)
+
   useEffect(() => {
-    if (options.initialResults && search.length === 0) {
-      dispatch({
-        type: "QUERY_SUCCESS", payload: options.initialResults
-      })
+    const next = reducer({
+      action, state, setState, options
+    })
+
+    if (typeof next === "function") {
+      next(state, setState)
+    } else {
+      setState(next)
     }
-  }, [search])
+  }, [action])
+
+  return {state, dispatch}
 }
 
+
 export const setupController = (options: AutoCompleteProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  useInitialResults({
-    search: state.search, dispatch, options
-  })
-
-  useFetchEvent({
-    state, dispatch, options
-  })
-
-  return {state, dispatch};
+  return useThunkReducer(reducer, {initialState, options})
 }
 
 export const Controller = createContext<ControllerContext>({

@@ -10,6 +10,7 @@ export default function Autocomplete(props: AutoCompleteProps) {
   return (
     <Controller.Provider value={setupController(props)}>
       <Input
+        initialResults={props.initialResults}
         autoFocus={props.inputAutoFocus}
         shortcutKey={props.inputShortcutKey}
       />

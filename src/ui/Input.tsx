@@ -1,7 +1,10 @@
 import React from "react";
+
 import {Controller} from "../core/controller";
+import {AutoCompleteProps} from "../core/types";
 
 interface Props {
+  initialResults?: AutoCompleteProps['initialResults']
   autoFocus?: boolean
   shortcutKey?: string
 }
@@ -24,6 +27,14 @@ export default function Input(props: Props) {
       return () => document.removeEventListener('keydown', onShortcutKeyType)
     }
   }, [props.shortcutKey])
+
+  React.useEffect(() => {
+    if (props.initialResults) {
+      dispatch({
+        type: 'QUERY_SUCCESS', payload: props.initialResults
+      })
+    }
+  }, [])
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
