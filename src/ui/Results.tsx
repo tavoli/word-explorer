@@ -1,14 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Controller} from '../core/controller';
 import {Results} from '../core/types';
 
-interface Props {
-  items: Results
-}
-
-export default function Results({items}: Props) {
+export default function Results() {
+  const {state} = useContext(Controller)
   return (
     <ul>
-      {items.map((item) => (
+      {state.data.map((item) => (
         <li key={item.id}>{item.text}</li>
       ))} 
     </ul>

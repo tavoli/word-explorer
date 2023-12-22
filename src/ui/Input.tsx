@@ -1,13 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
+import {Controller} from "../core/controller";
 
-interface Props {
-  onChange: (value: string) => void;
-}
+export default function Input() {
+  const {query} = useContext(Controller)
 
-export default function Input({ onChange }: Props) {
   return (
     <input
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => query(e.target.value)}
       placeholder="Search"
     />
   );
