@@ -11,6 +11,7 @@ root.render(
     <Autocomplete
       url="http://localhost:3000?q="
       debounceTime={500}
+      useEnterAsSubmit={true}
       inputAutoFocus={true}
       inputShortcutKey="/"
       initialResults={[

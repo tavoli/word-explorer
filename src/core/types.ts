@@ -6,6 +6,7 @@ export interface ResultItem {
 export type Results = ResultItem[];
 
 export interface AutoCompleteState {
+  event: string;
   search: string;
   data: Results;
   loading: boolean;
@@ -27,6 +28,7 @@ export interface AutoCompleteProps {
   initialResults?: Results;
   inputAutoFocus?: boolean;
   inputShortcutKey?: string;
+  useEnterAsSubmit?: boolean;
 }
 
 export interface ControllerContext {

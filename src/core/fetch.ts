@@ -11,25 +11,50 @@ async function fetchEvent(
     .then((data) => data)
 }
 
-export function useDebounceFetch({
+const fetchQuery = async ({
   search,
   dispatch,
   options,
+}) => {
+  return fetchEvent(search, options)
+    .then((data) => dispatch({
+      type: "QUERY_SUCCESS", payload: data
+    }))
+    .catch((error) => dispatch({
+      type: "QUERY_ERROR", payload: error
+    }))
+}
+
+export function useDebounceFetch({
+  state,
+  dispatch,
+  options,
 }) {
-  const debounceSearch = useDebounceValue(
-    search,
+  const debounceValue = useDebounceValue(
+    state.search,
     options.debounceTime ?? 0
   )
 
   useEffect(() => {
-    if (search.length >= (options.minChars || 3)) {
-      fetchEvent(search, options)
-        .then((data) => dispatch({
-          type: "QUERY_SUCCESS", payload: data
-        }))
-        .catch((error) => dispatch({
-          type: "QUERY_ERROR", payload: error
-        }))
+    if (
+      state.search.length >= (options.minChars || 3) &&
+      state.event === "QUERY"
+    ) {
+      fetchQuery({
+        search: debounceValue,
+        dispatch,
+        options,
+      })
     }
-  }, [debounceSearch]);
+  }, [debounceValue])
+
+  useEffect(() => {
+    if (state.event === "SUBMIT" && options.useEnterAsSubmit) {
+      fetchQuery({
+        search: state.search,
+        dispatch,
+        options,
+      })
+    }
+  }, [state.event])
 }

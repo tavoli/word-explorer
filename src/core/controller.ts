@@ -22,7 +22,7 @@ export const setupController = (options: AutoCompleteProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useDebounceFetch({
-    search: state.search, dispatch, options
+    state, dispatch, options
   })
 
   useInitialResults({

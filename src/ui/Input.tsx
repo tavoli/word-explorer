@@ -25,18 +25,27 @@ export default function Input(props: Props) {
     }
   }, [props.shortcutKey])
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch({
+      type: 'SUBMIT', payload: ref.current?.value
+    })
+  }
+
   return (
-    <input
-      ref={ref}
-      autoFocus={props.autoFocus}
-      onChange={(e) => dispatch({
-        type: 'QUERY', payload: e.target.value
-      })}
-      placeholder="Search"
-      autoCapitalize="off"
-      autoComplete="off"
-      autoCorrect="off"
-      spellCheck="false"
-    />
+    <form onSubmit={onSubmit}>
+      <input
+        ref={ref}
+        autoFocus={props.autoFocus}
+        onChange={(e) => dispatch({
+          type: 'QUERY', payload: e.target.value
+        })}
+        placeholder="Search"
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
+      />
+    </form>
   );
 }
