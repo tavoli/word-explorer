@@ -17,6 +17,15 @@ export interface AutoCompleteAction {
   payload: any;
 }
 
+export interface AutoCompleteProps {
+  url: string;
+  debounceTime?: number;
+  minChars?: number;
+  maxItems?: number;
+  cache?: boolean;
+  cacheDuration?: number;
+}
+
 export interface ControllerContext {
   state: AutoCompleteState;
   dispatch: (action: AutoCompleteAction) => void;

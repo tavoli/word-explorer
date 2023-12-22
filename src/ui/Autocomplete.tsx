@@ -1,17 +1,14 @@
 import React from "react";
 
 import {Controller, setupController} from "../core/controller";
+import {AutoCompleteProps} from "../core/types";
 
 import Input from "./Input";
 import Results from "./Results";
 
-interface Props {
-  url: string;
-}
-
-export default function Autocomplete({ url }: Props) {
+export default function Autocomplete(props: AutoCompleteProps) {
   return (
-    <Controller.Provider value={setupController(url)}>
+    <Controller.Provider value={setupController(props)}>
       <Input />
       <Results />
     </Controller.Provider>
