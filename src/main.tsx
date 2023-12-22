@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     <Autocomplete
       url="http://localhost:3000?q="
-      debounce={500}
+      debounceTime={500}
     />
   </React.StrictMode>
 )
