@@ -17,6 +17,10 @@ export default function Input(props: Props) {
         type: 'QUERY', payload: e.target.value
       })}
       placeholder="Search"
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      spellCheck="false"
     />
   );
 }
