@@ -1,6 +1,6 @@
 import {createContext, useReducer} from "react";
 
-import {Results} from "./types";
+import {AutoCompleteState, ControllerContext} from "./types";
 
 export const reducer = (
   state: AutoCompleteState,
@@ -10,18 +10,6 @@ export const reducer = (
   return state;
 }
 
-interface AutoCompleteState {
-  search: string;
-  data: Results;
-  loading: boolean;
-  error: Error | null;
-}
-
-interface ControllerContext {
-  state: AutoCompleteState;
-  query: (search: string) => void;
-}
-
 export const initialState: AutoCompleteState = {
   search: "",
   data: [],
@@ -29,12 +17,14 @@ export const initialState: AutoCompleteState = {
   error: null,
 }
 
+export const setupController = () => {
+  const [state, query] = useReducer(reducer, initialState);
+  return {state, query};
+}
+
 export const Controller = createContext<ControllerContext>({
   state: initialState,
   query: () => {},
 })
 
-export const setupController = () => {
-  const [state, query] = useReducer(reducer, initialState);
-  return {state, query};
-}
+
