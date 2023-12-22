@@ -1,7 +1,7 @@
 import {createContext, useEffect, useReducer} from "react";
 
 import initialState from "./state.json";
-import {useDebounceFetch} from "./fetch";
+import {useFetchEvent} from "./fetch";
 import {reducer} from "./reducer";
 
 import {
@@ -19,14 +19,14 @@ function useInitialResults({ search, dispatch, options }) {
 }
 
 export const setupController = (options: AutoCompleteProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useDebounceFetch({
-    state, dispatch, options
-  })
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useInitialResults({
     search: state.search, dispatch, options
+  })
+
+  useFetchEvent({
+    state, dispatch, options
   })
 
   return {state, dispatch};

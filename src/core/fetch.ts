@@ -25,7 +25,7 @@ const fetchQuery = async ({
     }))
 }
 
-export function useDebounceFetch({
+export function useFetchEvent({
   state,
   dispatch,
   options,
