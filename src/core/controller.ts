@@ -1,39 +1,38 @@
-import {createContext, useEffect, useState} from "react";
-
-import initialState from "./state.json";
-import {reducer} from "./reducer";
+import {createContext} from "react";
+import {useImmerReducer} from "use-immer";
 
 import {
-  AutoCompleteProps, ControllerContext
+  AutoCompleteProps,
+  AutoCompleteState,
+  ControllerContext
 } from "./types";
+import {reducer} from "./reducer";
 
-function useThunkReducer(reducer: Function, {initialState, options}) {
-  const [action, dispatch] = useState({type: '', payload: ''})
-  const [state, setState] = useState(initialState)
-
-  useEffect(() => {
-    const next = reducer({
-      action, state, setState, options
-    })
-
-    if (typeof next === "function") {
-      next(state, setState)
-    } else {
-      setState(next)
-    }
-  }, [action])
-
-  return {state, dispatch}
+const initialState: AutoCompleteState = {
+  search: "",
+  data: [],
+  loading: false,
+  error: null,
 }
 
-
 export const setupController = (options: AutoCompleteProps) => {
-  return useThunkReducer(reducer, {initialState, options})
+  const [state, internalDispatch] = useImmerReducer(reducer, initialState)
+
+  const dispatch = (action: any) => {
+    if (typeof action === "function") {
+      action({
+        dispatch: internalDispatch,
+        options,
+        state
+      })
+    }
+    return internalDispatch(action)
+  }
+
+  return {state, dispatch}
 }
 
 export const Controller = createContext<ControllerContext>({
   state: initialState,
   dispatch: () => {},
 })
-
-

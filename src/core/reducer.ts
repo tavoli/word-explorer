@@ -1,41 +1,22 @@
-import {fetchEvent} from "./fetch";
-import {AutoCompleteState, ReducerProps} from "./types";
+import {AutoCompleteAction, AutoCompleteState} from "./types"
 
-// follow redux reducer pattern
-// always pure
-// TODO: remove setState from reducer
-export const reducer = ({
-  action,
-  state,
-  setState,
-  options,
-}: ReducerProps): AutoCompleteState | Function => {
+export const reducer = (draft: AutoCompleteState, action: AutoCompleteAction) => {
   switch (action.type) {
     case "QUERY":
-      if (action.payload.length >= (options.minChars || 3)) {
-        setState({ ...state, loading: true })
-        return fetchEvent(action.payload, options)
-      }
-      return state
-    case "SUBMIT":
-      if (options.useEnterAsSubmit) {
-        setState({ ...state, loading: true })
-        return fetchEvent(action.payload, options)
-      }
-      return state
+      draft.search = action.payload
+      break
+    case "QUERY_START":
+      draft.loading = true
+      break
     case "QUERY_SUCCESS":
-      return {
-        ...state,
-        data: action.payload,
-        loading: false,
-      }
+      draft.loading = false
+      draft.data = action.payload
+      break
     case "QUERY_ERROR":
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      }
+      draft.loading = false
+      draft.error = action.payload
+      break
     default:
-      return state
+      return draft
   }
 }

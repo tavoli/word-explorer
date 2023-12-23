@@ -6,7 +6,6 @@ export interface ResultItem {
 export type Results = ResultItem[];
 
 export interface AutoCompleteState {
-  event: string;
   search: string;
   data: Results;
   loading: boolean;
@@ -15,7 +14,7 @@ export interface AutoCompleteState {
 
 export interface AutoCompleteAction {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export interface AutoCompleteProps {
@@ -33,14 +32,13 @@ export interface AutoCompleteProps {
 
 export interface ControllerContext {
   state: AutoCompleteState;
-  dispatch: (action: AutoCompleteAction) => void;
+  dispatch: React.Dispatch<unknown>;
 }
 
 export type SetState = React.Dispatch<React.SetStateAction<AutoCompleteState>>;
 
-export interface ReducerProps {
-  action: AutoCompleteAction;
+export interface ThunkProps {
+  dispatch: React.Dispatch<unknown>;
   state: AutoCompleteState;
-  setState: SetState;
   options: AutoCompleteProps;
 }
