@@ -4,14 +4,46 @@ import {Results} from '../core/types';
 
 export default function Results() {
   const {state} = useContext(Controller)
-  
-  return (
-    <ul>
-      {state.data.map((item, index) => (
-        <li key={index}>
-          <pre>{JSON.stringify(item, null, 2)}</pre>
+
+  const render = (content: JSX.Element | JSX.Element[]) => {
+    return (
+      <ul className="ac__results">
+        {content}
+      </ul>
+    )
+  }
+
+  if (state.loading) {
+    return render(
+      <li className="ac__result--loading">
+        SEARCHING...
+      </li>
+    )
+  } else if (state.error) {
+    return render(
+      <li className="ac__result-error">
+        <pre>{JSON.stringify(state.error, null, 2)}</pre>
+      </li>
+    )
+  } else if (state.data.length === 0) {
+    return render(
+      <li className="ac__result-empty">
+        EMPTY
+      </li>
+    )
+  } else if (state.data.length > 0) {
+    return render(
+      state.data.map((result, index) => (
+        <li className="ac__result" key={index}>
+          <pre>{JSON.stringify(result, null, 2)}</pre>
         </li>
-      ))} 
-    </ul>
-  );
+      ))
+    )
+  } else {
+    return render(
+      <li className="ac__result-error">
+        UNKNOWN ERROR
+      </li>
+    )
+  }
 }

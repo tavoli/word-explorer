@@ -51,12 +51,13 @@ export default function Input(props: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="ac__form" onSubmit={onSubmit}>
       <input
+        className="ac__input"
         ref={ref}
         autoFocus={props.autoFocus}
         onChange={onChange}
-        placeholder="Search"
+        placeholder="INPUT"
         autoCapitalize="off"
         autoComplete="off"
         autoCorrect="off"
