@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Controller} from "../core/controller";
-import {fetchEvent} from "../core/fetch";
+import {debounceFetch} from "../core/fetch";
 import {AutoCompleteProps} from "../core/types";
 
 interface Props {
@@ -40,13 +40,13 @@ export default function Input(props: Props) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(fetchEvent(ref.current?.value as string))
+    dispatch(debounceFetch(ref.current?.value as string))
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({type: 'QUERY', payload: e.target.value})
     if (e.target.value.length >= (props.minChars ?? 3)) {
-      dispatch(fetchEvent(e.target.value))
+      dispatch(debounceFetch(e.target.value))
     }
   }
 

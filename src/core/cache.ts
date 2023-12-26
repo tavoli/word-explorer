@@ -1,1 +1,2 @@
-// redux store
+export const cache = new Map();
+

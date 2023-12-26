@@ -14,11 +14,7 @@ root.render(
       useEnterAsSubmit={true}
       inputAutoFocus={true}
       inputShortcutKey="/"
-      initialResults={[
-        {id: '1', text: 'foo'},
-        {id: '2', text: 'bar'},
-        {id: '3', text: 'baz'},
-      ]}
+      initialResults={[]}
     />
   </React.StrictMode>
 )

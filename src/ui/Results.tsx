@@ -7,8 +7,10 @@ export default function Results() {
   
   return (
     <ul>
-      {state.data.map((item) => (
-        <li key={item.id}>{item.text}</li>
+      {state.data.map((item, index) => (
+        <li key={index}>
+          <pre>{JSON.stringify(item, null, 2)}</pre>
+        </li>
       ))} 
     </ul>
   );

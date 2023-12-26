@@ -1,30 +1,28 @@
-const data = [
-  {id: "1", text: "foo"},
-  {id: "2", text: "bar"},
-  {id: "3", text: "baz"},
-];
+const headers = {
+  "content-type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET",
+}
+
+const when = '2023-12-26T17:11:44.687Z'
+const key = '8cfdb189e723919be89707bee858bfb8aeb4290936f790b8'
+
+function wordAPI(w: string) {
+  return fetch(`https://www.wordsapi.com/mashape/words/${w}?when=${when}&encrypted=${key}`)
+}
 
 Bun.serve({
   async fetch(req: Request) {
-    let filtered = data;
-    const url = new URL(req.url);
-    const search = url.searchParams.get("q")?.toString().toLowerCase();
+    const url = new URL(req.url)
+    const word = url.searchParams.get("q")
 
-    if (search) {
-      filtered = data.filter((item) => item.text.toLowerCase().includes(search));
+    if (word) {
+      const response = await wordAPI(word)
+      const json = await response.json()
+      return new Response(JSON.stringify(json.results ?? []), { headers })
     }
 
-    await delay(700);
-
-    return new Response(JSON.stringify(filtered), {
-      headers: {
-        "content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:5173",
-        "Access-Control-Allow-Methods": "GET",
-      },
-    });
+    return new Response(JSON.stringify([]), { headers })
   },
-  port: 3000,
-});
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  port: 3000
+})

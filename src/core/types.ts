@@ -1,7 +1,4 @@
-export interface ResultItem {
-  id: string;
-  text: string;
-}
+export type ResultItem = any;
 
 export type Results = ResultItem[];
 
