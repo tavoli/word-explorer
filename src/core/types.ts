@@ -1,6 +1,6 @@
-export type ResultItem = any;
+export type ResultItem = string;
 
-export type Results = ResultItem[];
+export type Results = ResultItem;
 
 export interface AutoCompleteState {
   search: string;

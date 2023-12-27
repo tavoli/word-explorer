@@ -18,7 +18,7 @@ root.render(
       useEnterAsSubmit={true}
       inputAutoFocus={true}
       inputShortcutKey="/"
-      initialResults={[]}
+      initialResults="'/' to focus"
     />
     <footer style={{
       position: 'fixed',
