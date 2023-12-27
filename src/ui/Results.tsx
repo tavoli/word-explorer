@@ -15,7 +15,7 @@ export default function Results() {
 
   if (state.loading) {
     return render(
-      <li className="ac__result--loading">
+      <li className="ac__result-loading">
         SEARCHING...
       </li>
     )
@@ -25,19 +25,19 @@ export default function Results() {
         <pre>{JSON.stringify(state.error, null, 2)}</pre>
       </li>
     )
-  } else if (state.data.length === 0) {
+  } else if (!state.data.get(state.search)) {
     return render(
       <li className="ac__result-empty">
         EMPTY
       </li>
     )
-  } else if (state.data.length > 0) {
+  } else if (state.data.has(state.search)) {
     return render(
-      state.data.map((result, index) => (
+      state.data.get(state.search)?.map((result, index) => (
         <li className="ac__result" key={index}>
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </li>
-      ))
+      )) ?? []
     )
   } else {
     return render(

@@ -10,7 +10,10 @@ export const reducer = (draft: AutoCompleteState, action: AutoCompleteAction) =>
       break
     case "QUERY_SUCCESS":
       draft.loading = false
-      draft.data = action.payload
+      draft.error = null
+      if (action.payload) {
+        draft.data.set(draft.search, action.payload)
+      }
       break
     case "QUERY_ERROR":
       draft.loading = false

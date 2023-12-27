@@ -4,7 +4,7 @@ export type Results = ResultItem[];
 
 export interface AutoCompleteState {
   search: string;
-  data: Results;
+  data: Map<string, Results>;
   loading: boolean;
   error: Error | null;
 }

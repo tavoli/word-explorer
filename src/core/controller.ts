@@ -1,4 +1,5 @@
 import {createContext} from "react";
+import {enableMapSet} from "immer";
 import {useImmerReducer} from "use-immer";
 
 import {
@@ -10,10 +11,12 @@ import {reducer} from "./reducer";
 
 const initialState: AutoCompleteState = {
   search: "",
-  data: [],
+  data: new Map(),
   loading: false,
   error: null,
 }
+
+enableMapSet()
 
 export const setupController = (options: AutoCompleteProps) => {
   const [state, internalDispatch] = useImmerReducer(reducer, initialState)
