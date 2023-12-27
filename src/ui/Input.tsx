@@ -38,11 +38,6 @@ export default function Input(props: Props) {
     }
   }, [state.search])
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    dispatch(debounceFetch(ref.current?.value as string))
-  }
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({type: 'QUERY', payload: e.target.value})
     if (e.target.value.length >= (props.minChars ?? 3)) {
@@ -51,18 +46,18 @@ export default function Input(props: Props) {
   }
 
   return (
-    <form className="ac__form" onSubmit={onSubmit}>
-      <input
-        className="ac__input"
-        ref={ref}
-        autoFocus={props.autoFocus}
-        onChange={onChange}
-        placeholder="INPUT"
-        autoCapitalize="off"
-        autoComplete="off"
-        autoCorrect="off"
-        spellCheck="false"
-      />
-    </form>
+    <input
+      id="ac__input"
+      name="ac__input"
+      className="ac__input"
+      ref={ref}
+      autoFocus={props.autoFocus}
+      onChange={onChange}
+      placeholder="INPUT"
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      spellCheck="false"
+    />
   );
 }

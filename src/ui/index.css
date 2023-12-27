@@ -31,7 +31,7 @@ body {
 }
 
 .ac__result {
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .ac__result-loading,
@@ -46,15 +46,12 @@ body {
   color: #f00;
 }
 
-.ac__form {
-  width: 100%;
-  position: sticky;
-  top: 0;
-}
-
 .ac__input {
   width: 100%;
   height: 50px;
+  position: sticky;
+  top: 0;
+  padding: 0;
   border-style: none;
   outline: none;
   background-color: #1a1a1a;

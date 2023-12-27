@@ -7,43 +7,43 @@ export default function Results() {
 
   const render = (content: JSX.Element | JSX.Element[]) => {
     return (
-      <ul className="ac__results">
+      <output className="ac__results" form="ac-form" htmlFor="ac__input">
         {content}
-      </ul>
+      </output>
     )
   }
 
   if (state.loading) {
     return render(
-      <li className="ac__result-loading">
+      <span className="ac__result-loading">
         SEARCHING...
-      </li>
+      </span>
     )
   } else if (state.error) {
     return render(
-      <li className="ac__result-error">
+      <span className="ac__result-error">
         <pre>{JSON.stringify(state.error, null, 2)}</pre>
-      </li>
+      </span>
     )
   } else if (!state.data.get(state.search)) {
     return render(
-      <li className="ac__result-empty">
+      <span className="ac__result-empty">
         EMPTY
-      </li>
+      </span>
     )
   } else if (state.data.has(state.search)) {
     return render(
       state.data.get(state.search)?.map((result, index) => (
-        <li className="ac__result" key={index}>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
-        </li>
+        <pre className="ac__result" key={index}>
+          {JSON.stringify(result, null, 2)}
+        </pre>
       )) ?? []
     )
   } else {
     return render(
-      <li className="ac__result-error">
+      <span className="ac__result-error">
         UNKNOWN ERROR
-      </li>
+      </span>
     )
   }
 }

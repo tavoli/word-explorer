@@ -10,8 +10,8 @@ import Results from "./Results";
 export default function Autocomplete(props: AutoCompleteProps) {
   return (
     <Controller.Provider value={setupController(props)}>
-      <div className="ac">
-        <div className="ac__container">
+      <search className="ac">
+        <form className="ac__container" name="ac-form">
           <Input
             initialResults={props.initialResults}
             autoFocus={props.inputAutoFocus}
@@ -19,8 +19,8 @@ export default function Autocomplete(props: AutoCompleteProps) {
             minChars={props.minChars}
           />
           <Results />
-        </div>
-      </div>
+        </form>
+      </search>
     </Controller.Provider>
   );
 }
