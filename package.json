@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "bunx --bun vite",
-    "api": "bun run src/api/index.ts",
+    "api": "bun run ./api/_index.ts",
     "build": "vite build",
     "serve": "vite preview"
   },

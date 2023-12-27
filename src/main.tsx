@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(container)
 root.render(
   <React.StrictMode>
     <Autocomplete
-      url="http://localhost:3000?q="
+      url="https://autocomplete-orcin.vercel.app/api?q="
       debounceTime={500}
       useEnterAsSubmit={true}
       inputAutoFocus={true}
