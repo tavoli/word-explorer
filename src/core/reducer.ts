@@ -11,7 +11,7 @@ export const reducer = (draft: AutoCompleteState, action: AutoCompleteAction) =>
     case "QUERY_SUCCESS":
       draft.loading = false
       draft.error = null
-      if (action.payload) {
+      if (action.payload && draft.search) {
         draft.data.set(draft.search, action.payload)
       }
       break

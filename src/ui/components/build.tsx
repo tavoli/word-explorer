@@ -35,17 +35,17 @@ interface Content {
 export function build(content: Content): React.JSX.Element[] {
   const components: React.ReactNode[] = []
 
-  if (content.word) {
+  if (content?.word) {
     components.push(
       <Head key="head">
         <Word key="word" word={content.word} />
-        <Pronunciation key="pronunciation" pronunciation={content.pronunciation} />
-        <Frequency key="frequency" frequency={content.frequency} />
+        {content.pronunciation && <Pronunciation key="pronunciation" pronunciation={content.pronunciation} />}
+        {content.frequency && <Frequency key="frequency" frequency={content.frequency} />}
       </Head>
     )
   }
 
-  if (content.results) {
+  if (content?.results) {
     const internalComponents = content.results.map((result, index) => (
       <Block key={index}>
         {result.partOfSpeech && <PartOfSpeech partOfSpeech={result.partOfSpeech} />}

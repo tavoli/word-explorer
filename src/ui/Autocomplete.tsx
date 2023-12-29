@@ -11,14 +11,14 @@ export default function Autocomplete(props: AutoCompleteProps) {
   return (
     <Controller.Provider value={setupController(props)}>
       <search className="ac">
-        <form className="ac__container" name="ac-form">
+        <form className="ac__container" name="ac-form" onSubmit={(e) => e.preventDefault()}>
           <Input
-            initialResults={props.initialResults}
             autoFocus={props.inputAutoFocus}
             shortcutKey={props.inputShortcutKey}
             minChars={props.minChars}
+            paste={props.searchByPaste}
           />
-          <Results />
+          <Results select={props.searchBySelection} />
         </form>
       </search>
     </Controller.Provider>

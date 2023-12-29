@@ -14,11 +14,13 @@ root.render(
   <React.StrictMode>
     <Autocomplete
       url={API_URL}
+      searchByPaste={true}
+      searchBySelection={true}
       debounceTime={300}
       useEnterAsSubmit={true}
       inputAutoFocus={true}
       inputShortcutKey="/"
-      initialResults="'/' to focus"
+      minChars={2}
     />
     <footer style={{
       position: 'fixed',
@@ -30,7 +32,7 @@ root.render(
     }}>
       <a href="https://github.com/tavoli/great-frontend-autocomplete"
         style={{
-        color: 'yellow',
+        color: 'hsl(60, 90%, 30%)',
         fontSize: '2rem',
         fontWeight: 'bold',
         textDecoration: 'none'

@@ -3,6 +3,24 @@
 ## How it Works
 Simply input a word, and our web app leverages an API to retrieve its definition.
 
+## App features
+- Search by clipboard paste
+- Search by select some word on document
+- Hit / to focus input
+- Submit to search whenever moment
+- Get word result
+
+## Search result features
+- Definition
+- Part of speech
+- Examples of usage
+- Synonyms
+- Type of
+- Has types
+- Antonyms
+- Frequency
+- Pronunciation
+
 ## App Preview
 ![Word Explorer Preview](public/app.png)
 

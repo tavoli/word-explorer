@@ -1,6 +1,6 @@
 import {ThunkProps} from "./types";
 
-let timer: number[] = []
+let timer: any[] = []
 
 const query = async (url: string, search: string) => {
   const response = await window.fetch(`${url}${search}`)

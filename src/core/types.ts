@@ -16,12 +16,12 @@ export interface AutoCompleteAction {
 
 export interface AutoCompleteProps {
   url: string;
+  searchByPaste?: boolean;
+  searchBySelection?: boolean;
   debounceTime?: number;
   minChars?: number;
   maxItems?: number;
   cache?: boolean;
-  cacheDuration?: number;
-  initialResults?: Results;
   inputAutoFocus?: boolean;
   inputShortcutKey?: string;
   useEnterAsSubmit?: boolean;
