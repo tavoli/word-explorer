@@ -37,6 +37,7 @@ export default function Input(props: Props) {
   useEffect(() => {
     if (props.paste) {
       const onPaste = (e: ClipboardEvent) => {
+        ref.current?.blur()
         const search = e.clipboardData?.getData('text') ?? ''
         dispatch({type: 'QUERY', payload: search})
         dispatch(debounceFetch(search))
