@@ -1,15 +1,24 @@
-# gf-autocomplete
+## Just an word finder
 
-To install dependencies:
+#
+#### How it works?
+You type some word and the web app use a API to get the definition  
 
-```bash
-bun install
-```
+#
+### App Preview
+![App Preview](public/app.png)
 
-To run:
+#
+#### Curious about how it was implemented?
+![App Architecture](public/doc.png)
 
-```bash
-bun run index.ts
-```
+#
+#### Created with:
+- React.js
+- Typescript
+- HTML
+- CSS
+- Bun
 
-This project was created using `bun init` in bun v1.0.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Served with Vercel              
+
