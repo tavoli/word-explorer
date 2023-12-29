@@ -13,7 +13,7 @@ import {
   Synonyms,
   TypeOf,
   Word
-} from "./Word"
+} from "./index"
 
 interface Result {
   definition?: string;
