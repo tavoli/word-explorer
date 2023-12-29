@@ -1,24 +1,22 @@
-## Just an word finder
+# Word Explorer
 
-#
-#### How it works?
-You type some word and the web app use a API to get the definition  
+## How it Works
+Simply input a word, and our web app leverages an API to retrieve its definition.
 
-#
-### App Preview
-![App Preview](public/app.png)
+## App Preview
+![Word Explorer Preview](public/app.png)
 
-#
-#### Curious about how it was implemented?
+## Implementation Insights
+Ever wondered about the inner workings? Check out our app's architecture below.
+
 ![App Architecture](public/doc.png)
 
-#
-#### Created with:
+## Technologies Used
 - React.js
 - Typescript
 - HTML
 - CSS
-- Bun
+- Bundled with Bun
 
-Served with Vercel              
-
+## Hosting
+Served seamlessly with Vercel. Explore the world of words effortlessly!
