@@ -1,4 +1,4 @@
-export type ResultItem = string;
+export type ResultItem = any;
 
 export type Results = ResultItem;
 

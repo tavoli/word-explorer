@@ -18,7 +18,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .ac__container {
+    width: 100%;
+  }
 }
 
 .ac__results {
@@ -34,23 +39,22 @@ body {
   padding: 1rem 0;
 }
 
-.ac__result-loading,
-.ac__result-error,
-.ac__result-empty {
+.ac__result--loading,
+.ac__result--error,
+.ac__result--empty {
+  padding: 1rem;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   color: yellow;
 }
 
-.ac__result-error {
+.ac__result--error {
   color: #f00;
 }
 
 .ac__input {
   width: 100%;
   height: 50px;
-  position: sticky;
-  top: 0;
   padding: 0;
   border-style: none;
   outline: none;

@@ -4,7 +4,7 @@ let timer: number[] = []
 
 const query = async (url: string, search: string) => {
   const response = await window.fetch(`${url}${search}`)
-  const data = await response.text()
+  const data = await response.json()
   return data
 }
 

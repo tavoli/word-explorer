@@ -1,25 +1,25 @@
-import {marked} from 'marked';
 import React, {useContext} from 'react';
 import {Controller} from '../core/controller';
 import {Results} from '../core/types';
+import {build} from './components/build';
 
 const Output = (({type, content}) => {
   switch (type) {
     case 'loading':
       return (
-        <output className="ac__results ac__results--loading">
+        <output className="ac__results ac__result--loading">
           SEARCHING...
         </output>
       )
     case 'error':
       return (
-        <output className="ac__results ac__results--error">
+        <output className="ac__results ac__result--error">
           ERROR
         </output>
       )
     case 'empty':
       return (
-        <output className="ac__results ac__results--empty">
+        <output className="ac__results ac__result--empty">
           EMPTY
         </output>
       )
@@ -29,8 +29,9 @@ const Output = (({type, content}) => {
           className="ac__results"
           form="ac-form"
           htmlFor="ac__input"
-          dangerouslySetInnerHTML={{__html: marked(content)}}
-        />
+        >
+          {build(content)}
+        </output>
       )
     default:
       return (
@@ -56,10 +57,7 @@ export default function Results() {
     return <Output type="empty" content="EMPTY" />
   }
 
-  if (state.data.has(state.search)) {
-    const results = state.data.get(state.search) ?? ''
-    return <Output type="success" content={results} />
-  }
-
-  return <Output type="error" content="UNKNOWN ERROR" />
+  return (
+    <Output type="success" content={state.data.get(state.search)} />
+  )
 }
